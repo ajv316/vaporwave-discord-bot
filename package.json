@@ -2,17 +2,16 @@
   "//1": "describes your app and its dependencies",
   "//2": "https://docs.npmjs.com/files/package.json",
   "//3": "updating this file will download and update your packages",
-
-  "name": "my-glitch-app",
+  "name": "vaporwave-discord",
   "version": "1.0.3",
-  "description": "What am I about?",
+  "description": "V~A~P~O~R~W~A~V~E",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
     "express": "^4.16.2",
-    "discord.js": "^11.2.0"
+    "discord.js": "^11.2.1"
   },
   "engines": {
     "node": "8.x"
@@ -23,7 +22,9 @@
   "license": "MIT",
   "keywords": [
     "node",
-    "glitch",
-    "express"
+    "vaporwave",
+    "discord",
+    "discord-bot",
+    "discord.js"
   ]
 }

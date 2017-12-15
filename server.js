@@ -1,39 +1,55 @@
-// server.js
-// where your node app starts
+const Discord = require('discord.js');
+const client = new Discord.Client({
+  disableEveryone: true
+});
+const Prefix = process.env.BOT_PREFIX;
 
-// init project
-var express = require('express');
-var app = express();
-
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
-
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
-
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
+client.on('ready', () => {
+  console.log(`Bot is ready`);
+  console.log(`Bot logged on as ${client.user.tag}`);
+  console.log(`~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`);
+  client.user.setPresence({ game: {name: "do ~~help"}})
 });
 
-app.get("/dreams", function (request, response) {
-  response.send(dreams);
-});
+// Command Handler
+client.on("message", message => {
+  if (message.author.bot) return;
+  if(message.content.indexOf(Prefix) !== 0) return;
 
-// could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
-  dreams.push(request.query.dream);
-  response.sendStatus(200);
-});
+  const args = message.content.slice(Prefix.length).trim().split(/ +/g);
+  const command = args.shift().toLowerCase();
+  if (!args) message.channel.send("You don't have the enough arguments!");
+  
+  // Ping!
+  if (command === "ping") {
+    message.channel.send("Pong*!*");
+  }
+  // Help!
+  if (command === "help") {
+    message.channel.send
+    ("```Prefix: [~~]```")
+    message.channel.send
+    ("```[~~]ping == Pong!```")
+    message.channel.send
+    ("```[~~]help == Displays this help message```")
+    message.channel.send
+    ("```[~~]help.dm == Dms the help message```")
+    
+  }
+  if (command === "help.dm") {
+    message.author.send
+    ("```Prefix: [~~]```")
+    message.author.send
+    ("```[~~]ping == Pong!```")
+    message.author.send
+    ("```[~~]help == Displays the help message```")
+    message.author.send
+    ("```[~~]help.dm == Dms this help message```")
+  }
+  // Say meewo
+  if (command === "say") {
+    
+  }
+});  
 
-// Simple in-memory store for now
-var dreams = [
-  "Find and count some sheep",
-  "Climb a really tall mountain",
-  "Wash the dishes"
-];
-
-// listen for requests :)
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
-});
+client.login(process.env.BOT_TOKEN);
