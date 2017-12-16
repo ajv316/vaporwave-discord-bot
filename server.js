@@ -26,28 +26,38 @@ client.on("message", message => {
   }
   // Help!
   if (command === "help") {
-    message.channel.send
-    ("```Prefix: [~~]```")
-    message.channel.send
-    ("```[~~]ping == Pong!```")
-    message.channel.send
-    ("```[~~]help == Displays this help message```")
-    message.channel.send
-    ("```[~~]help.dm == Dms the help message```")
-    
+    const embed = new Discord.RichEmbed()
+    .setColor(0xff71ce)
+    .setTitle("Help | Commands:")
+    .setDescription("**>>>>>>>>>>>>>>>>>>>>>>>>>**")
+    .addField("Prefix", "``~~``")
+    .addField("~~help", "Displays this message")
+    .addField("~~help.dm", "Dms the help message instead")
+    .addField("~~ping", "Pong*!*")
+    .addField("~~say", "Repeats the typed text")
+    message.channel.send(embed)
   }
   if (command === "help.dm") {
-    message.author.send
-    ("```Prefix: [~~]```")
-    message.author.send
-    ("```[~~]ping == Pong!```")
-    message.author.send
-    ("```[~~]help == Displays the help message```")
-    message.author.send
-    ("```[~~]help.dm == Dms this help message```")
+    message.channel.send("*Help has been sent!*")
+    const embed = new Discord.RichEmbed()   
+    .setColor(0xff71ce)
+    .setTitle("Help | Commands:")
+    .setDescription("**>>>>>>>>>>>>>>>>>>>>>>>>>**")
+    .addField("Prefix", "``~~``")
+    .addField("~~help", "Displays the help message")
+    .addField("~~help.dm", "Dms this message")
+    .addField("~~ping", "Pong*!*")
+    .addField("~~say", "Repeats the typed text")
+    
+    message.author.send(embed)
   }
   // Say meewo
   if (command === "say") {
+    message.delete()
+    message.channel.send(`${args.join(" ")}`)
+  }
+  // Mute cmd
+  if (command === "mute") {
     
   }
 });  
